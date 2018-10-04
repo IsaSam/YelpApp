@@ -48,7 +48,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Grand Pu Bah" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pY6-kr-q55">
-                                                    <rect key="frame" x="81" y="8" width="178" height="18"/>
+                                                    <rect key="frame" x="81" y="8" width="176" height="18"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -87,7 +87,7 @@
                                             <constraints>
                                                 <constraint firstItem="cIN-jG-Bef" firstAttribute="top" secondItem="5Zm-MY-u5S" secondAttribute="bottom" constant="2" id="3KA-KQ-gpg"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="CnL-PK-EXX" secondAttribute="trailing" constant="5" id="465-HZ-GrH"/>
-                                                <constraint firstItem="CnL-PK-EXX" firstAttribute="leading" secondItem="pY6-kr-q55" secondAttribute="trailing" constant="8" id="6HT-S9-got"/>
+                                                <constraint firstItem="CnL-PK-EXX" firstAttribute="leading" secondItem="pY6-kr-q55" secondAttribute="trailing" constant="10" id="6HT-S9-got"/>
                                                 <constraint firstItem="pY6-kr-q55" firstAttribute="top" secondItem="c4s-SW-P4O" secondAttribute="top" constant="8" id="DNi-7D-gQe"/>
                                                 <constraint firstItem="CnL-PK-EXX" firstAttribute="top" secondItem="c4s-SW-P4O" secondAttribute="top" constant="10" id="JmQ-G1-oYX"/>
                                                 <constraint firstAttribute="trailing" secondItem="lzc-nU-ur4" secondAttribute="trailing" constant="8" id="KS0-f1-7em"/>
