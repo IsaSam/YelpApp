@@ -8,9 +8,11 @@
 
 import UIKit
 
-class BusinessesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class BusinessesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
     @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var searchBar: UISearchBar!
     
     var businesses: [Business]!
     
@@ -19,6 +21,8 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         
         tableView.dataSource = self
         tableView.delegate = self
+        searchBar.delegate = self
+        self.navigationItem.titleView = searchBar
         
         //tableView.rowHeight = 120
         tableView.rowHeight = UITableViewAutomaticDimension
