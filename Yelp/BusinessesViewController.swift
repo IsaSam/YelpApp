@@ -15,6 +15,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var searchBar: UISearchBar!
     
     var businesses: [Business]!
+    var filteredResto: [[String: Any]]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,7 +72,8 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     }
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: "BusinessCell", for: indexPath) as! BusinessCell
-        
+        //let movie = self.searchBar.text!.isEmpty ? movies[indexPath.row] : filteredMovies![indexPath.row]
+        //let business = self.searchBar.text!.isEmpty ? businesses[indexPath.row] : filteredResto![indexPath.row]
         cell.business = businesses[indexPath.row]
         
         return cell
