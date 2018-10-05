@@ -31,10 +31,11 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         tableView.estimatedRowHeight = 120
         
         MySearchBar()
-      /*
-        Business.searchWithTerm(term: "Thai", completion: { (businesses: [Business]?, error: Error?) -> Void in
+      
+        Business.searchWithTerm(term: "Burger", completion: { (businesses: [Business]?, error: Error?) -> Void in
             
                 self.businesses = businesses
+                self.filteredResto = businesses
                 self.tableView.reloadData()
             
                 if let businesses = businesses {
@@ -43,18 +44,20 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
                         print(business.address!)}
                 }
             
-            }) */
+            })
         
         // Example of Yelp search with more search options specified
-         Business.searchWithTerm(term: "Restaurants", sort: .distance, categories: ["asianfusion", "burgers"]) { (businesses, error) in
+        /* Business.searchWithTerm(term: "Restaurants", sort: .distance, categories: ["asianfusion", "bugers"]) { (businesses, error) in
                 self.businesses = businesses
+                self.filteredResto = businesses
                 self.tableView.reloadData()
                  for business in self.businesses {
                      print(business.name!)
                      print(business.address!)
                  }
+           // self.tableView.reloadData()
          }
-         //*/
+        */
     }
     
     
@@ -68,7 +71,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     func MySearchBar(){
         let searchBar = UISearchBar()
         searchBar.sizeToFit()
-        searchBar.placeholder = "Search Restorants..."
+        searchBar.placeholder = "Searching Burger..."
         searchBar.delegate = self
         self.navigationItem.titleView = searchBar
     }
@@ -103,9 +106,5 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         cell.business = filteredResto[indexPath.row]
         return cell
     }
-    
-    
-    
-   
     
 }
