@@ -14,22 +14,24 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     
     @IBOutlet weak var searchBar: UISearchBar!
     
+    var update: [NSDictionary] = []
     var businesses: [Business]!
-    var filteredResto: [[String: Any]]?
+    var filteredResto: [Business]!
+    var seachBar: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         
         tableView.dataSource = self
         tableView.delegate = self
-        searchBar.delegate = self
-        self.navigationItem.titleView = searchBar
         
         //tableView.rowHeight = 120
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 120
         
-        
+        MySearchBar()
+      /*
         Business.searchWithTerm(term: "Thai", completion: { (businesses: [Business]?, error: Error?) -> Void in
             
                 self.businesses = businesses
@@ -38,55 +40,72 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
                 if let businesses = businesses {
                     for business in businesses {
                         print(business.name!)
-                        print(business.address!)
-                    }
+                        print(business.address!)}
                 }
             
-            }
-        )
+            }) */
         
-        /* Example of Yelp search with more search options specified
+        // Example of Yelp search with more search options specified
          Business.searchWithTerm(term: "Restaurants", sort: .distance, categories: ["asianfusion", "burgers"]) { (businesses, error) in
                 self.businesses = businesses
+                self.tableView.reloadData()
                  for business in self.businesses {
                      print(business.name!)
                      print(business.address!)
                  }
          }
-         */
-        
+         //*/
     }
+    
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    //@available(iOS 2.0, *)
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        if businesses != nil {
-            return businesses!.count
-        }else{
+    //create searchbar
+    func MySearchBar(){
+        let searchBar = UISearchBar()
+        searchBar.sizeToFit()
+        searchBar.placeholder = "Search Restorants..."
+        searchBar.delegate = self
+        self.navigationItem.titleView = searchBar
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar){
+        searchBar.showsCancelButton = true
+    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+    }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filteredResto = searchText.isEmpty ? businesses: businesses?.filter({(businesses: Business) -> Bool in
+            return (businesses.name?.lowercased().hasPrefix(searchText.lowercased()))!
+        })
+        tableView.reloadData()
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let filteredResto = filteredResto{
+            return filteredResto.count
+        } else {
             return 0
         }
     }
+    
+
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: "BusinessCell", for: indexPath) as! BusinessCell
-        //let movie = self.searchBar.text!.isEmpty ? movies[indexPath.row] : filteredMovies![indexPath.row]
-        //let business = self.searchBar.text!.isEmpty ? businesses[indexPath.row] : filteredResto![indexPath.row]
-        cell.business = businesses[indexPath.row]
-        
+        //cell.business = businesses[indexPath.row]
+        cell.business = filteredResto[indexPath.row]
         return cell
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    
+    
+   
     
 }
